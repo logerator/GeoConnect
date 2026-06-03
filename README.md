@@ -1,2 +1,2 @@
-# Terroir
+# GeoConnect
 Explore cultural values
