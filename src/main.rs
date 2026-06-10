@@ -35,7 +35,8 @@ pub fn Hero() -> Element {
     rsx! {
         div {
             id: "hero",
-            img { src: HEADER_SVG, id: "header" }
+             h1 { "🌍 GeoConnect" }
+
             div { id: "links",
                 a { "📚 Learn the WHY in Japanese culture" }
                 a { "👺 Explore different Region's Distinct Culture" }
