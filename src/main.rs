@@ -2,7 +2,8 @@
 // Main file (This is a test) 
 
 use dioxus::prelude::*;
-
+mod map;
+use map::JapanMap;
 #[derive(Debug, Clone, Routable, PartialEq)]
 #[rustfmt::skip]
 enum Route {
@@ -79,6 +80,7 @@ pub fn Map(id: i32) -> Element {
             // Content
             h1 { "This is the map of Japan!" }
             p { "Click on a region to discover how geography shapes the culture in this region." }
+            JapanMap {}
 
             
         }
