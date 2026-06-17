@@ -2,18 +2,17 @@
 
 1. Hokkaido
 
-Geographic isolation --> late integration into Japan --> frontier identity --> practicality, adapation, and lack of rigid traditions 
+Geographic isolation --> late integration into Japan --> frontier identity --> practicality, adaption, and lack of rigid traditions 
 
 
 2. Tohoku
 
-Rugged geopgrahy --> harsh climate --> resilience, communal cooperation, deep prservation of ancient traditions 
+Rugged geography --> harsh climate --> resilience, communal cooperation, deep preservation of ancient traditions 
 
 
 3. Kanto
 
-Plain, vast fertile soil and coastl access --> large-scale agriculture --> international trade --> established political and economic center --> cosmopolition innovation and rapid modernization 
-
+Vast plains, fertile soil, and coastal access --> large-scale agriculture --> international trade --> established political and economic center --> cosmopolition innovation and rapid modernization
 
 4. Chubu
 

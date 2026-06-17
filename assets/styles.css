@@ -1,0 +1,83 @@
+/* Hokkaido button */
+.hokkaido-btn {
+    background-color: #ea004c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+}
+
+
+/* Tohoku button */
+.tohoku-btn {
+    background-color: #c7ea00;
+    color: white;
+    padding: 10px, 30 px;
+    border-radius: 4px;
+    border: none;
+}
+
+
+/* Chubu button */
+.chubu-btn {
+    background-color: #0090ea;
+    color: white;
+    padding: 10px, 30 px;
+    border-radius: 4px;
+    border: none;
+}
+
+
+/* Kanto button */
+.kanto-btn {
+    background-color: #00ea2b;
+    color: white;
+    padding: 10px, 30 px;
+    border-radius: 4px;
+    border: none;
+}
+
+
+/* Kansai button */
+.kansai-btn {
+    background-color: #c700ea;
+    color: white;
+    padding: 10px, 30 px;
+    border-radius: 4px;
+    border: none;
+}
+
+
+/* Chugoku button */
+.chugoku-btn {
+    background-color: #ea8c00;
+    color: white;
+    padding: 10px, 30 px;
+    border-radius: 4px;
+    border: none;
+}
+
+
+/* Shikoku button */
+.shikoku-btn {
+    background-color: #ea8c00;
+    color: white;
+    padding: 10px, 30 px;
+    border-radius: 4px;
+    border: none;
+}
+
+
+/* Kyushu button */
+.kyushu-btn {
+    background-color: hsla(210, 4%, 60%, 0.925);
+    color: white;
+    padding: 10px, 30 px;
+    border-radius: 4px;
+    border: none;
+}
+
+
+
+
+
