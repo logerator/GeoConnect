@@ -13,8 +13,7 @@ https://github.com/logerator/GeoConnect
 
 ## Build & Install
 
-cargo install dioxus-cli --locked
-cargo build
+cargo install dioxus-cli --locked && cargo build
 
 ## How to Run
 
