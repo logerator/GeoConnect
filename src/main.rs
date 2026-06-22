@@ -1,4 +1,4 @@
-// Main file (This is a test) 
+// Main file (This is a test)
 
 use dioxus::prelude::*;
 mod map;
