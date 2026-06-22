@@ -4,17 +4,22 @@ use dioxus::prelude::*;
 mod map;
 mod regions;
 use map::JapanMap;
+mod hokkaido;
+use hokkaido::Hokkaido;
 
 static DB_POOL: std::sync::OnceLock<sqlx::PgPool> = std::sync::OnceLock::new();
 
 #[derive(Debug, Clone, Routable, PartialEq)]
-enum Route {
+pub enum Route {
     #[layout(Navbar)]
     #[route("/")]
     Home {},
     #[route("/map/:id")]
     Map { id: i32 },
+    #[route("/hokkaido")]
+    Hokkaido {},
 }
+
 
 const FAVICON: Asset = asset!("/assets/favicon.ico");
 const MAIN_CSS: Asset = asset!("/assets/main.css");
@@ -108,5 +113,7 @@ fn Navbar() -> Element {
         Outlet::<Route> {}
     }
 }
+
+
 
 

@@ -1,17 +1,18 @@
 use dioxus::prelude::*;
+use crate::Route;
 
 #[component]
 pub fn HokkaidoBtn() -> Element {
+    let nav = use_navigator();
     rsx! {
         button {
             class: "hokkaido-btn",
-            onclick: move |_| {},
+            onclick: move |_| { nav.push(Route::Hokkaido {}); },
+
             "Hokkaido"
         }
     }
 }
-
-
 
 #[component]
 pub fn TohokuBtn() -> Element {
