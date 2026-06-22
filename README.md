@@ -1,6 +1,6 @@
 # GeoConnect
 
-A mobile app for American-Japanese cultural exchange. Users are able to click on Japan's 8 regions, read cultural and historical information about each one, and compare US vs. Japanese customs with each other. The app is being built with Dioxus (Rust) for the UI and a PostgreSQL database (hosted on Railway).v
+A mobile app for American-Japanese cultural exchange. Users are able to click on Japan's 8 regions, read cultural and historical information about each one, and compare US vs. Japanese customs with each other. The app is being built with Dioxus (Rust) for the UI and a PostgreSQL database (hosted on Railway).
 
 ## Repository
 
@@ -8,8 +8,8 @@ https://github.com/logerator/GeoConnect
 
 ## Requirements
 
-- Rust toolchain (cargo)
-- A .env file in the project root with a DATABASE_URL pointing to a PostgreSQL database matching the schema below (included in submission)
+- cargo
+- A .env file with a DATABASE_URL pointing to a database hosted on Railway (link included in submission)
 
 ## Build & Install
 
