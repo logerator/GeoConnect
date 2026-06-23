@@ -1,24 +1,49 @@
-
-// Main file (This is a test) 
+// Main file (This is a test)
 
 use dioxus::prelude::*;
 mod map;
+mod regions;
 use map::JapanMap;
+mod hokkaido;
+use hokkaido::Hokkaido;
+
+static DB_POOL: std::sync::OnceLock<sqlx::PgPool> = std::sync::OnceLock::new();
+
 #[derive(Debug, Clone, Routable, PartialEq)]
-#[rustfmt::skip]
-enum Route {
+pub enum Route {
     #[layout(Navbar)]
     #[route("/")]
     Home {},
     #[route("/map/:id")]
     Map { id: i32 },
+    #[route("/hokkaido")]
+    Hokkaido {},
 }
+
 
 const FAVICON: Asset = asset!("/assets/favicon.ico");
 const MAIN_CSS: Asset = asset!("/assets/main.css");
 const HEADER_SVG: Asset = asset!("/assets/header.svg");
 
-fn main() {
+#[tokio::main]
+async fn main() {
+    dotenvy::dotenv().ok();
+    let database_url = std::env::var("DATABASE_URL")
+        .expect("DATABASE_URL not set in .env");
+
+    let pool = sqlx::PgPool::connect(&database_url)
+        .await
+        .expect("Database connection failed");
+
+    let row: (i32,) = sqlx::query_as("SELECT 1")
+        .fetch_one(&pool)
+        .await
+        .expect("Test query failed");
+    println!("Test query returned: {}", row.0);
+
+    DB_POOL.set(pool).expect("Pool already initialized");
+    println!("Connected to database!");
+
     dioxus::launch(App);
 }
 
@@ -34,9 +59,8 @@ fn App() -> Element {
 #[component]
 pub fn Hero() -> Element {
     rsx! {
-        div {
-            id: "hero",
-             h1 { "🌍 GeoConnect" }
+        div { id: "hero",
+            h1 { "🌍 GeoConnect" }
 
             div { id: "links",
                 a { "📚 Learn the WHY in Japanese culture" }
@@ -44,13 +68,8 @@ pub fn Hero() -> Element {
                 a { "👹 Prepare for Life in Japan" }
                 a { "🎌 Minimize Culture Shock" }
 
-
-                Link {
-                    to: Route::Map { id: 1},
-                    "Go to the Map"
-                }
-         
-               
+                Link { to: Route::Map { id: 1 }, "Go to the Map" }
+            
             }
         }
     }
@@ -66,7 +85,6 @@ fn Home() -> Element {
     rsx! {
         Hero {}
 
-
     }
 }
 
@@ -74,15 +92,11 @@ fn Home() -> Element {
 #[component]
 pub fn Map(id: i32) -> Element {
     rsx! {
-        div {
-            id: "Map",
-
-            // Content
-            h1 { "This is the map of Japan!" }
-            p { "Click on a region to discover how geography shapes the culture in this region." }
-            JapanMap {}
+        div { id: "Map",
 
             
+            JapanMap {}
+        
         }
     }
 }
@@ -91,15 +105,15 @@ pub fn Map(id: i32) -> Element {
 #[component]
 fn Navbar() -> Element {
     rsx! {
-        div {
-            id: "navbar",
-            Link {
-                to: Route::Home {},
-                "Home"
-            }
-           
+        div { id: "navbar",
+            Link { to: Route::Home {}, "Home" }
+        
         }
 
         Outlet::<Route> {}
     }
 }
+
+
+
+
