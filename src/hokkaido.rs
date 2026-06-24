@@ -1,66 +1,47 @@
 use dioxus::prelude::*;
 
-
+#[derive(Debug, Clone, sqlx::FromRow)]
+struct Fact {
+    title: String,
+    body: String,
+}
 
 #[component]
 pub fn Hokkaido() -> Element {
-    let mut selected = use_signal(|| Option::<&'static str>::None);
+    let mut selected = use_signal(|| Option::<Fact>::None);
 
-
+    let facts = use_resource(move || async move {
+        let pool = crate::DB_POOL.get().expect("pool not initialized");
+        let result: Vec<Fact> = sqlx::query_as(
+            "SELECT title, body FROM facts WHERE region_id = 1"
+        )
+        .fetch_all(pool)
+        .await
+        .expect("facts query failed");
+        result
+    });
 
     rsx! {
         div {
             h1 { "Hokkaido " }
 
-            button { onclick: move |_| selected.set(Some("dairy")), "Diary Farming Culture"}
-            
-            button { onclick: move |_| selected.set(Some("ainu")), "Ainu Revival"}
-            
-            
-            button { onclick: move |_| selected.set(Some("ski")), "Ski & Winter Tourism"}
-            
-            
-            button { onclick: move |_| selected.set(Some("ramen")), "Sapporo Ramen"}
-            
-
-            if let Some(topic) = selected() {
-                Flowchart { topic }
+            if let Some(facts) = facts() {
+                for fact in facts {
+                    button {
+                        onclick: {
+                            let fact = fact.clone();
+                            move |_| selected.set(Some(fact.clone()))
+                        },
+                        "{fact.title}"
+                    }
+                }
             }
 
-        }
-    }
-}
-
-
-#[component]
-fn Flowchart(topic: &'static str) -> Element {
-    let steps: &[&str] = match topic {
-        "dairy"=> &[
-            "Geographic isolation → late integration into Japan",
-            "Meiji frontier colonization (1869) → government-sponsored farming",
-            "Cold climate unsuitable for rice → cattle & dairy introduced",
-            "Hokkaido becomes Japan's breadbasket",
-            "Dairy farming becomes core regional identity & industry",
-        ],
-        "ainu" => &[
-            "Geographic isolation → indigenous Ainu people undisturbed",
-            "Meiji annexation → forced assimilation, Ainu culture suppressed",
-            "Late 20th century indigenous rights movement globally",
-            "2019: Ainu recognized as indigenous people by Japanese law",
-            "Cultural revival: language, crafts, and ceremonies resurging",
-        ],
-        // ... other topics
-        _ => &[],
-    };
-
-
- rsx! {
-        div {
-            for (i, step) in steps.iter().enumerate() {
+            if let Some(fact) = selected() {
                 div {
-                    span { "{step}" }
-                    if i < steps.len() - 1 {
-                        span { " ↓ " }
+                    h2 { "{fact.title}" }
+                    for step in fact.body.split(" | ") {
+                        div { "{step}" }
                     }
                 }
             }
