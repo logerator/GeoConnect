@@ -11,7 +11,7 @@ use crate::regions::KyushuBtn;
 #[component]
 pub fn JapanMap() -> Element {
     rsx! {
-        div { class: "flex flex-col items-center justify-center h-screen",
+        div { class: "flex flex-col items-center justify-center min-h-screen",
 
             h1 { class: "text-4xl font-bold mb-4", "Japan Regions Map" }
 

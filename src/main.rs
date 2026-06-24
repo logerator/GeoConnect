@@ -23,6 +23,7 @@ pub enum Route {
 
 const FAVICON: Asset = asset!("/assets/favicon.ico");
 const MAIN_CSS: Asset = asset!("/assets/main.css");
+const STYLES_CSS: Asset = asset!("/assets/styles.css");
 const HEADER_SVG: Asset = asset!("/assets/header.svg");
 
 #[tokio::main]
@@ -52,6 +53,7 @@ fn App() -> Element {
     rsx! {
         document::Link { rel: "icon", href: FAVICON }
         document::Link { rel: "stylesheet", href: MAIN_CSS }
+        document::Link { rel: "stylesheet", href: STYLES_CSS }
         Router::<Route> {}
     }
 }
@@ -75,11 +77,7 @@ pub fn Hero() -> Element {
     }
 }
 
-
-
-
-
-/// Home page
+// Home page
 #[component]
 fn Home() -> Element {
     rsx! {
@@ -88,20 +86,15 @@ fn Home() -> Element {
     }
 }
 
-/// Blog page
+// Map page
 #[component]
 pub fn Map(id: i32) -> Element {
     rsx! {
-        div { id: "Map",
-
-            
-            JapanMap {}
-        
-        }
+        div { id: "Map", JapanMap {} }
     }
 }
 
-/// Shared navbar component.
+// Shared navbar component.
 #[component]
 fn Navbar() -> Element {
     rsx! {
@@ -113,7 +106,3 @@ fn Navbar() -> Element {
         Outlet::<Route> {}
     }
 }
-
-
-
-
