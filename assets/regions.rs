@@ -7,10 +7,6 @@ fn HokkaidoBtn() -> Element {
     };
 
     rsx! {
-        button {
-            class: "hokkaido-btn",
-            "Hokkaido",
-            onclick: on_click,
-        }
+        button { class: "hokkaido-btn", onclick: on_click, "Hokkaido" }
     }
 }

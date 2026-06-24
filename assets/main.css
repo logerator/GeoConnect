@@ -1,37 +1,54 @@
 /* App-wide styling */
-
-html,
-body,
-#main,
-#root,
-#app,
-body > div {
-    width: 100%;
-    min-height: 100%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-* {
-    box-sizing: border-box;
-}
-
 body {
     background-color: #0f1116;
     color: #ffffff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+}
+
+#hero {
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#links {
+    width: 400px;
+    text-align: left;
+    font-size: x-large;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+#links a {
+    color: white;
+    text-decoration: none;
+    margin-top: 20px;
+    margin: 10px 0px;
+    border: white 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#links a:hover {
+    background-color: #1f1f1f;
+    cursor: pointer;
+}
+
+#header {
+    max-width: 1200px;
 }
 
 /* Navbar */
-
 #navbar {
-    width: 100%;
     display: flex;
     flex-direction: row;
-    padding: 20px;
-}
-
+  }
+  
 #navbar a {
     color: #ffffff;
     margin-right: 20px;
@@ -44,92 +61,149 @@ body {
     color: #91a4d2;
 }
 
-/* Home / Hero page */
-
-#hero {
-    min-height: calc(100vh - 60px);
-    width: 100%;
-    margin: 0;
-    padding: 40px 20px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#links {
-    width: 400px;
-    max-width: 100%;
-    text-align: left;
-    font-size: x-large;
-    color: white;
-
-    display: flex;
-    flex-direction: column;
-}
-
-#links a {
-    color: white;
-    text-decoration: none;
-    margin: 10px 0;
-    border: white 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-#links a:hover {
-    background-color: #1f1f1f;
-    cursor: pointer;
-}
-
 /* Map page */
+.map-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 24px;
+}
 
-#Map,
-#map-page {
-    width: 100%;
-    min-height: calc(100vh - 60px);
-    padding: 20px;
-
+.region-buttons {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 12px;
+    padding-top: 8px;
 }
 
-#Map h1,
-#Map p,
-#map-page h1,
-#map-page p {
-    text-align: center;
+.hokkaido-btn {
+    background-color: #ea004c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
 }
 
-#japan-map-section {
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.hokkaido-btn:hover {
+    background-color: #c0003e;
 }
 
-#japan-map-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.tohoku-btn {
+    background-color: #c7ea00;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
 }
 
-#japan-map-img {
-    width: 700px;
-    max-width: 100%;
-    display: block;
+.tohoku-btn:hover {
+    background-color: #a6bd1f;
 }
 
-/* Old blog styles */
 
+
+.chubu-btn {
+    background-color: #00b7ea;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.chubu-btn:hover {
+    background-color: #1fb2bd;
+}
+
+
+
+.kanto-btn {
+    background-color: #00ea23;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.kanto-btn:hover {
+    background-color: #1fbd2a;
+}
+
+
+
+.kansai-btn {
+    background-color: #e200ea;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.kansai-btn:hover {
+    background-color: #bd1fbd;
+}
+
+
+.chugoku-btn {
+    background-color: #ea8c00;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.shikoku-btn:hover {
+    background-color: #bd1f8b;
+}
+
+
+.shikoku-btn {
+    background-color: #ea00bf;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.chugoku-btn:hover {
+    background-color: #bd631f;
+}
+
+
+.kyushu-btn:hover {
+    background-color: #a8a1a6;
+}
+
+
+.kyushu-btn {
+    background-color: #777577;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+
+/* Blog page */
 #blog {
     margin-top: 50px;
-}
-
+  }
+  
 #blog a {
     color: #ffffff;
     margin-top: 50px;
