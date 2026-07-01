@@ -7,7 +7,9 @@ pub fn HokkaidoBtn() -> Element {
     rsx! {
         button {
             class: "hokkaido-btn",
-            onclick: move |_| { nav.push(Route::Hokkaido {}); },
+            onclick: move |_| {
+                nav.push(Route::Hokkaido {});
+            },
 
             "Hokkaido"
         }
@@ -16,10 +18,13 @@ pub fn HokkaidoBtn() -> Element {
 
 #[component]
 pub fn TohokuBtn() -> Element {
+    let nav = use_navigator();
     rsx! {
         button {
             class: "tohoku-btn",
-            onclick: move |_| {},
+            onclick: move |_| {
+                nav.push(Route::Tohoku {});
+            },
             "Tohoku"
         }
     }
@@ -27,10 +32,13 @@ pub fn TohokuBtn() -> Element {
 
 #[component]
 pub fn ChubuBtn() -> Element {
+    let nav = use_navigator();
     rsx! {
         button {
             class: "chubu-btn",
-            onclick: move |_| {},
+            onclick: move |_| {
+                nav.push(Route::Chubu {});
+            },
             "Chubu"
         }
     }
@@ -38,10 +46,13 @@ pub fn ChubuBtn() -> Element {
 
 #[component]
 pub fn KantoBtn() -> Element {
+    let nav = use_navigator();
     rsx! {
         button {
             class: "kanto-btn",
-            onclick: move |_| {},
+            onclick: move |_| {
+                nav.push(Route::Kanto {});
+            },
             "Kanto"
         }
     }
@@ -49,10 +60,13 @@ pub fn KantoBtn() -> Element {
 
 #[component]
 pub fn KansaiBtn() -> Element {
+    let nav = use_navigator();
     rsx! {
         button {
             class: "kansai-btn",
-            onclick: move |_| {},
+            onclick: move |_| {
+                nav.push(Route::Kansai {});
+            },
             "Kansai"
         }
     }
@@ -61,10 +75,13 @@ pub fn KansaiBtn() -> Element {
 
 #[component]
 pub fn ChugokuBtn() -> Element {
+    let nav = use_navigator();
     rsx! {
         button {
             class: "chugoku-btn",
-            onclick: move |_| {},
+            onclick: move |_| {
+                nav.push(Route::Chugoku {});
+            },
             "Chugoku"
         }
     }
@@ -72,10 +89,13 @@ pub fn ChugokuBtn() -> Element {
 
 #[component]
 pub fn ShikokuBtn() -> Element {
+    let nav = use_navigator();
     rsx! {
         button {
             class: "shikoku-btn",
-            onclick: move |_| {},
+            onclick: move |_| {
+                nav.push(Route::Shikoku {});
+            },
             "Shikoku"
         }
     }
@@ -84,15 +104,14 @@ pub fn ShikokuBtn() -> Element {
 
 #[component]
 pub fn KyushuBtn() -> Element {
+    let nav = use_navigator();
     rsx! {
         button {
             class: "kyushu-btn",
-            onclick: move |_| {},
+            onclick: move |_| {
+                nav.push(Route::Kyushu {});
+            },
             "Kyushu"
         }
     }
 }
-
-
-
-
