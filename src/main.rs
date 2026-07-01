@@ -1,12 +1,23 @@
-// Main file (This is a test)
-
 use dioxus::prelude::*;
 mod map;
 mod regions;
 use map::JapanMap;
 mod hokkaido;
 use hokkaido::Hokkaido;
-
+mod tohoku;
+use tohoku::Tohoku;
+mod chubu;
+use chubu::Chubu;
+mod kanto;
+use kanto::Kanto;
+mod kansai;
+use kansai::Kansai;
+mod chugoku;
+use chugoku::Chugoku;
+mod shikoku;
+use shikoku::Shikoku;
+mod kyushu;
+use kyushu::Kyushu;
 static DB_POOL: std::sync::OnceLock<sqlx::PgPool> = std::sync::OnceLock::new();
 
 #[derive(Debug, Clone, Routable, PartialEq)]
@@ -18,6 +29,20 @@ pub enum Route {
     Map { id: i32 },
     #[route("/hokkaido")]
     Hokkaido {},
+    #[route("/tohoku")]
+    Tohoku {},
+    #[route("/chubu")]
+    Chubu {},
+    #[route("/kanto")]
+    Kanto {},
+    #[route("/kansai")]
+    Kansai {},
+    #[route("/chugoku")]
+    Chugoku {},
+    #[route("/shikoku")]
+    Shikoku {},
+    #[route("/kyushu")]
+    Kyushu {},
 }
 
 
@@ -82,7 +107,6 @@ pub fn Hero() -> Element {
 fn Home() -> Element {
     rsx! {
         Hero {}
-
     }
 }
 
@@ -100,9 +124,7 @@ fn Navbar() -> Element {
     rsx! {
         div { id: "navbar",
             Link { to: Route::Home {}, "Home" }
-        
         }
-
         Outlet::<Route> {}
     }
 }
