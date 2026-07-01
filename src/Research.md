@@ -2,17 +2,34 @@
 
 1. Hokkaido
 
-Geographic isolation --> late integration into Japan --> frontier identity --> practicality, adaption, and lack of rigid traditions 
+Geographic isolation --> late integration into Japan --> frontier identity --> practicality, adaption, and lack of rigid traditions
 
+
+Geographically closer to other nations --> Trade with other nations --> used to receiving items that didn't exists in their own culture --> Hokkaido culture more influenced by other nations 
+
+
+Harsh climate --> geography supported rich natural resources --> hunting and fishing remained more central to everyday life --> hunter-gatherer lifestyle highly viable
 
 2. Tohoku
 
 Rugged geography --> harsh climate --> resilience, communal cooperation, deep preservation of ancient traditions 
 
+Heavy snofall --> Snow-country life -- Snow festivals 
+
+Cold, fertile plains --> Rice granary --> Harvest deities 
+
+Harsh winters --> Food preservation --> Ferments and sake
+
+Volcanic peaks --> Geothermal water --> Onsen and snow monsters 
+
+Remote north --> Rural isolation --> "Deep Japan" feel 
+
 
 3. Kanto
 
 Vast plains, fertile soil, and coastal access --> large-scale agriculture --> international trade --> established political and economic center --> cosmopolition innovation and rapid modernization
+
+
 
 4. Chubu
 
