@@ -1,12 +1,11 @@
-/* App-wide styling */
+
 body {
+    margin: 0;
     background-color: #0f1116;
     color: #ffffff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Home hero */
 #hero {
     margin: 0;
     padding: 20px;
@@ -16,23 +15,24 @@ body {
     align-items: center;
 }
 
-/* Links */
+
 #links {
     width: 400px;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
     text-align: left;
     font-size: x-large;
     color: white;
-    display: flex;
-    flex-direction: column;
 }
 
 #links a {
+    margin: 10px 0;
+    padding: 10px;
     color: white;
     text-decoration: none;
-    margin: 10px 0px;
-    border: white 1px solid;
+    border: 1px solid white;
     border-radius: 5px;
-    padding: 10px;
 }
 
 #links a:hover {
@@ -40,12 +40,12 @@ body {
     cursor: pointer;
 }
 
-/* Header */
+
+
 #header {
     max-width: 1200px;
 }
 
-/* Navbar */
 
 #navbar {
     display: flex;
@@ -56,13 +56,15 @@ body {
 }
 
 #navbar a {
+    padding: 8px 16px;
     color: #ffffff;
     text-decoration: none;
     font-weight: 600;
-    padding: 8px 16px;
-    border-radius: 8px;
     background-color: #232837;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    border-radius: 8px;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 #navbar a:hover {
@@ -70,12 +72,12 @@ body {
     background-color: #33405c;
     transform: translateY(-1px);
 }
-/* Map page wrapper */
+
+#Map,
 #map-page {
     width: 100%;
 }
 
-/* This wraps title, subtitle, map, and buttons */
 .japan-map-content {
     width: 100%;
     display: flex;
@@ -84,188 +86,256 @@ body {
     text-align: center;
 }
 
-/* Map title text */
 
 .map-title {
     width: 100%;
-    text-align: center;
-    font-size: 3.2rem;
-    font-weight: 700;
     margin-top: 28px;
     margin-bottom: 2px;
-    letter-spacing: 2px;
-    font-family: Georgia, 'Times New Roman', serif;
     color: #f4f0e8;
+    text-align: center;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 3.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
 }
 
-/* Small red accent line under title */
 .map-title::after {
     content: "";
     display: block;
     width: 550px;
+    max-width: 80%;
     height: 4px;
+    margin: 14px auto 0;
     background-color: #e63946;
-    margin: 14px auto 0 auto;
     border-radius: 999px;
 }
 
-/* Map subtitle text */
 .map-subtitle {
     width: 100%;
-    text-align: center;
     margin-bottom: 30px;
     color: #b8bcc7;
+    text-align: center;
     font-size: 1.05rem;
     font-weight: 350;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
-/* Map image and buttons */
+
 .map-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto;
 }
 
-.map-container img {
-    display: block;
+.map-image-wrapper {
+    position: relative;
     width: 700px;
     max-width: 90vw;
+    margin: 0 auto;
+}
+
+.japan-map-img {
+    display: block;
+    width: 100%;
     height: auto;
+    margin: 0;
 }
 
-.region-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    padding-top: 8px;
-    max-width: 700px;
+
+a.map-hotspot {
+    position: absolute !important;
+    z-index: 100 !important;
+
+    display: block !important;
+    box-sizing: border-box !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: transparent !important;
+    border: none !important;
+
+    color: transparent !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    text-decoration: none !important;
+
+    cursor: pointer !important;
 }
 
-/* Region buttons */
-.hokkaido-btn {
-    background-color: #ea004c;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
+
+.map-image-wrapper {
+    position: relative;
 }
 
-.hokkaido-btn:hover {
-    background-color: #c0003e;
+.japan-map-img {
+    position: relative;
+    z-index: 1;
+
+    transition:
+        filter 0.24s ease,
+        transform 0.24s ease;
 }
 
-.tohoku-btn {
-    background-color: #c7ea00;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
+
+.map-image-wrapper:has(a.map-hotspot:hover) .japan-map-img {
+    filter:
+        brightness(1.1)
+        contrast(1.06)
+        saturate(1.18)
+        drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))
+        drop-shadow(0 0 8px rgba(255, 90, 130, 0.28))
+        drop-shadow(0 0 14px rgba(90, 140, 255, 0.18));
+
+    transform:
+        translateY(-2px)
+        scale(1.007);
 }
 
-.tohoku-btn:hover {
-    background-color: #a6bd1f;
+
+
+.map-image-wrapper:has(a.map-hotspot:active) .japan-map-img {
+    filter:
+        brightness(1.05)
+        contrast(1.04)
+        saturate(1.1)
+        drop-shadow(0 4px 9px rgba(0, 0, 0, 0.34))
+        drop-shadow(0 0 6px rgba(255, 100, 140, 0.18));
+
+    transform:
+        translateY(0)
+        scale(0.998);
 }
 
-.chubu-btn {
-    background-color: #00b7ea;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
+
+
+a.map-hotspot:focus-visible {
+    outline: none !important;
 }
 
-.chubu-btn:hover {
-    background-color: #1fb2bd;
+.map-image-wrapper:has(a.map-hotspot:focus-visible) .japan-map-img {
+    filter:
+        brightness(1.1)
+        contrast(1.06)
+        saturate(1.18)
+        drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))
+        drop-shadow(0 0 8px rgba(255, 90, 130, 0.28))
+        drop-shadow(0 0 14px rgba(90, 140, 255, 0.18));
+
+    transform:
+        translateY(-2px)
+        scale(1.007);
 }
 
-.kanto-btn {
-    background-color: #00ea23;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
+/* Hokkaido */
+a.map-hotspot.hokkaido-hotspot {
+    top: 2% !important;
+    left: 52% !important;
+    width: 30% !important;
+    height: 25% !important;
+    border-color: #ff7f86 !important;
 }
 
-.kanto-btn:hover {
-    background-color: #1fbd2a;
+/* Tohoku */
+a.map-hotspot.tohoku-hotspot {
+    top: 27% !important;
+    left: 51% !important;
+    width: 14% !important;
+    height: 28% !important;
+    border-color: #fff48a !important;
 }
 
-.kansai-btn {
-    background-color: #e200ea;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
+/* Chubu */
+a.map-hotspot.chubu-hotspot {
+    top: 53% !important;
+    left: 37% !important;
+    width: 12% !important;
+    height: 17% !important;
 }
 
-.kansai-btn:hover {
-    background-color: #bd1fbd;
+/* Kanto */
+a.map-hotspot.kanto-hotspot {
+    top: 55% !important;
+    left: 48% !important;
+    width: 11% !important;
+    height: 13% !important;
 }
 
-.chugoku-btn {
-    background-color: #ea8c00;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
+/* Kansai */
+a.map-hotspot.kansai-hotspot {
+    top: 63% !important;
+    left: 28% !important;
+    width: 10% !important;
+    height: 14% !important;
+    border-color: #7777ff !important;
 }
 
-.chugoku-btn:hover {
-    background-color: #bd631f;
+/* Chugoku */
+a.map-hotspot.chugoku-hotspot {
+    top: 62% !important;
+    left: 12% !important;
+    width: 17% !important;
+    height: 11% !important;
+    border-color: #ff8b38 !important;
 }
 
-.shikoku-btn {
-    background-color: #ea00bf;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
+/* Shikoku */
+a.map-hotspot.shikoku-hotspot {
+    top: 72% !important;
+    left: 19% !important;
+    width: 12% !important;
+    height: 10% !important;
+    border-color: #d96dff !important;
 }
 
-.shikoku-btn:hover {
-    background-color: #bd1f8b;
+/* Kyushu */
+a.map-hotspot.kyushu-hotspot {
+    top: 75% !important;
+    left: 5% !important;
+    width: 14% !important;
+    height: 19% !important;
+    border-color: #c2c2c2 !important;
 }
 
-.kyushu-btn {
-    background-color: #777577;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
 }
 
-.kyushu-btn:hover {
-    background-color: #a8a1a6;
-}
 
-/* Blog page */
+
 #blog {
     margin-top: 50px;
 }
 
 #blog a {
-    color: #ffffff;
     margin-top: 50px;
+    color: #ffffff;
+}
+
+
+@media (max-width: 700px) {
+    .map-title {
+        font-size: 2.3rem;
+    }
+
+    .map-subtitle {
+        margin-bottom: 20px;
+        font-size: 0.9rem;
+    }
+
+    #links {
+        width: 90%;
+    }
 }

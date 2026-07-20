@@ -1,78 +1,39 @@
-/* Hokkaido button */
-.hokkaido-btn {
-    background-color: #ea004c;
+/* =========================================================
+   REGION PAGE STYLING
+   Do not place map-hotspot positioning in this file.
+   ========================================================= */
+
+/*
+The clickable map regions are controlled by assets/main.css.
+
+This file can be used later for content inside:
+- hokkaido.rs
+- tohoku.rs
+- chubu.rs
+- kanto.rs
+- kansai.rs
+- chugoku.rs
+- shikoku.rs
+- kyushu.rs
+*/
+
+.region-page {
+    width: min(900px, 90%);
+    margin: 40px auto;
+    padding: 24px;
+
     color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    border: none;
+    background-color: #151821;
+
+    border: 1px solid #2a2f3a;
+    border-radius: 12px;
 }
 
-
-/* Tohoku button */
-.tohoku-btn {
-    background-color: #c7ea00;
-    color: white;
-    padding: 10px, 30 px;
-    border-radius: 4px;
-    border: none;
+.region-page h1 {
+    margin-top: 0;
+    color: #f4f0e8;
 }
 
-
-/* Chubu button */
-.chubu-btn {
-    background-color: #0090ea;
-    color: white;
-    padding: 10px, 30 px;
-    border-radius: 4px;
-    border: none;
-}
-
-
-/* Kanto button */
-.kanto-btn {
-    background-color: #00ea2b;
-    color: white;
-    padding: 10px, 30 px;
-    border-radius: 4px;
-    border: none;
-}
-
-
-/* Kansai button */
-.kansai-btn {
-    background-color: #c700ea;
-    color: white;
-    padding: 10px, 30 px;
-    border-radius: 4px;
-    border: none;
-}
-
-
-/* Chugoku button */
-.chugoku-btn {
-    background-color: #ea8c00;
-    color: white;
-    padding: 10px, 30 px;
-    border-radius: 4px;
-    border: none;
-}
-
-
-/* Shikoku button */
-.shikoku-btn {
-    background-color: #ff21e5;
-    color: white;
-    padding: 10px, 30 px;
-    border-radius: 4px;
-    border: none;
-}
-
-
-/* Kyushu button */
-.kyushu-btn {
-    background-color: hsla(210, 4%, 60%, 0.925);
-    color: white;
-    padding: 10px, 30 px;
-    border-radius: 4px;
-    border: none;
+.region-page a {
+    color: #8ab4ff;
 }
