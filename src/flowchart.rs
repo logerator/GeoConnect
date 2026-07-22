@@ -25,10 +25,28 @@ fn parse_step(step: &str) -> StepContent {
     }
 }
 
+/// Reads index `i`, defaulting to collapsed (`false`) if the signal's vector
+/// hasn't caught up to the current step count yet — this can happen for a
+/// render or two right after `steps` changes, since Dioxus may reuse this
+/// component's signal state across different `steps` props. Never panics.
+fn is_expanded(expanded: Signal<Vec<bool>>, i: usize) -> bool {
+    expanded.read().get(i).copied().unwrap_or(false)
+}
+
+/// Sets index `i`, growing the vector first if needed. Never panics.
+fn set_expanded(mut expanded: Signal<Vec<bool>>, i: usize, value: bool) {
+    let mut e = expanded();
+    if e.len() <= i {
+        e.resize(i + 1, false);
+    }
+    e[i] = value;
+    expanded.set(e);
+}
+
 #[component]
 pub fn FlowChart(steps: Vec<String>) -> Element {
     let step_count = steps.len();
-    let mut expanded = use_signal(move || vec![false; step_count]);
+    let expanded = use_signal(move || vec![false; step_count]);
 
     rsx! {
         div {
@@ -55,12 +73,12 @@ pub fn FlowChart(steps: Vec<String>) -> Element {
 
                         {
                             let content = parse_step(&step);
-                            let is_expanded = expanded()[i];
+                            let expanded_now = is_expanded(expanded, i);
 
                             match content.bullets {
                                 Some(bullets) => rsx! {
                                     p { class: "flow-node-text flow-node-summary", "{content.summary}" }
-                                    if is_expanded {
+                                    if expanded_now {
                                         ul {
                                             class: "flow-node-bullets",
                                             for (bi, bullet) in bullets.into_iter().enumerate() {
@@ -69,35 +87,23 @@ pub fn FlowChart(steps: Vec<String>) -> Element {
                                         }
                                         button {
                                             class: "flow-toggle",
-                                            onclick: move |_| {
-                                                let mut e = expanded();
-                                                e[i] = false;
-                                                expanded.set(e);
-                                            },
+                                            onclick: move |_| set_expanded(expanded, i, false),
                                             "Show less"
                                         }
                                     } else {
                                         button {
                                             class: "flow-toggle",
-                                            onclick: move |_| {
-                                                let mut e = expanded();
-                                                e[i] = true;
-                                                expanded.set(e);
-                                            },
+                                            onclick: move |_| set_expanded(expanded, i, true),
                                             "Read more"
                                         }
                                     }
                                 },
                                 None if content.summary.chars().count() > READ_MORE_THRESHOLD => rsx! {
-                                    if is_expanded {
+                                    if expanded_now {
                                         p { class: "flow-node-text", "{content.summary}" }
                                         button {
                                             class: "flow-toggle",
-                                            onclick: move |_| {
-                                                let mut e = expanded();
-                                                e[i] = false;
-                                                expanded.set(e);
-                                            },
+                                            onclick: move |_| set_expanded(expanded, i, false),
                                             "Show less"
                                         }
                                     } else {
@@ -107,11 +113,7 @@ pub fn FlowChart(steps: Vec<String>) -> Element {
                                         }
                                         button {
                                             class: "flow-toggle",
-                                            onclick: move |_| {
-                                                let mut e = expanded();
-                                                e[i] = true;
-                                                expanded.set(e);
-                                            },
+                                            onclick: move |_| set_expanded(expanded, i, true),
                                             "Read more"
                                         }
                                     }

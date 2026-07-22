@@ -1,5 +1,6 @@
 use dioxus::prelude::*;
 use crate::flowchart::FlowChart;
+use crate::place_nav::PlaceNav;
 
 #[derive(Debug, Clone, sqlx::FromRow)]
 struct Fact {
@@ -27,6 +28,8 @@ pub fn Tohoku() -> Element {
             class: "region-page",
             h1 { "Tohoku " }
 
+            PlaceNav { region_id: 2 }
+
             if let Some(facts) = facts() {
                 for fact in facts {
                     button {
@@ -44,7 +47,7 @@ pub fn Tohoku() -> Element {
                 div {
                     class: "fact-detail",
                     h2 { "{fact.title}" }
-                    FlowChart { steps: fact.body.split(" | ").map(|s| s.to_string()).collect::<Vec<String>>() }
+                    FlowChart { key: "{fact.title}", steps: fact.body.split(" | ").map(|s| s.to_string()).collect::<Vec<String>>() }
                 }
             }
         }

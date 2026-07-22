@@ -2,7 +2,10 @@ use dioxus::prelude::*;
 mod map;
 mod regions;
 mod flowchart;
+mod place;
+mod place_nav;
 use map::JapanMap;
+use place::Place;
 mod hokkaido;
 use hokkaido::Hokkaido;
 mod tohoku;
@@ -28,6 +31,8 @@ pub enum Route {
     Home {},
     #[route("/map/:id")]
     Map { id: i32 },
+    #[route("/place/:id")]
+    Place { id: i32 },
     #[route("/hokkaido")]
     Hokkaido {},
     #[route("/tohoku")]
