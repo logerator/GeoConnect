@@ -1,6 +1,29 @@
 use dioxus::prelude::*;
 
-const READ_MORE_THRESHOLD: usize = 80;
+const READ_MORE_THRESHOLD: usize = 90;
+
+/// A step's raw text can optionally encode a short summary plus a bulleted
+/// elaboration, using " :: " to separate them and " • " to separate bullets,
+/// e.g. "Summary sentence :: first detail • second detail • third detail".
+/// Steps without " :: " are treated as plain text and fall back to
+/// character-count truncation instead.
+struct StepContent {
+    summary: String,
+    bullets: Option<Vec<String>>,
+}
+
+fn parse_step(step: &str) -> StepContent {
+    match step.split_once(" :: ") {
+        Some((summary, rest)) => StepContent {
+            summary: summary.trim().to_string(),
+            bullets: Some(rest.split(" • ").map(|b| b.trim().to_string()).collect()),
+        },
+        None => StepContent {
+            summary: step.to_string(),
+            bullets: None,
+        },
+    }
+}
 
 #[component]
 pub fn FlowChart(steps: Vec<String>) -> Element {
@@ -30,33 +53,73 @@ pub fn FlowChart(steps: Vec<String>) -> Element {
                             span { class: "flow-node-label", "Today" }
                         }
 
-                        if step.chars().count() > READ_MORE_THRESHOLD && !expanded()[i] {
-                            p {
-                                class: "flow-node-text",
-                                "{step.chars().take(READ_MORE_THRESHOLD).collect::<String>()}…"
-                            }
-                            button {
-                                class: "flow-toggle",
-                                onclick: move |_| {
-                                    let mut e = expanded();
-                                    e[i] = true;
-                                    expanded.set(e);
+                        {
+                            let content = parse_step(&step);
+                            let is_expanded = expanded()[i];
+
+                            match content.bullets {
+                                Some(bullets) => rsx! {
+                                    p { class: "flow-node-text flow-node-summary", "{content.summary}" }
+                                    if is_expanded {
+                                        ul {
+                                            class: "flow-node-bullets",
+                                            for (bi, bullet) in bullets.into_iter().enumerate() {
+                                                li { key: "{bi}", "{bullet}" }
+                                            }
+                                        }
+                                        button {
+                                            class: "flow-toggle",
+                                            onclick: move |_| {
+                                                let mut e = expanded();
+                                                e[i] = false;
+                                                expanded.set(e);
+                                            },
+                                            "Show less"
+                                        }
+                                    } else {
+                                        button {
+                                            class: "flow-toggle",
+                                            onclick: move |_| {
+                                                let mut e = expanded();
+                                                e[i] = true;
+                                                expanded.set(e);
+                                            },
+                                            "Read more"
+                                        }
+                                    }
                                 },
-                                "Read more"
-                            }
-                        } else if step.chars().count() > READ_MORE_THRESHOLD {
-                            p { class: "flow-node-text", "{step}" }
-                            button {
-                                class: "flow-toggle",
-                                onclick: move |_| {
-                                    let mut e = expanded();
-                                    e[i] = false;
-                                    expanded.set(e);
+                                None if content.summary.chars().count() > READ_MORE_THRESHOLD => rsx! {
+                                    if is_expanded {
+                                        p { class: "flow-node-text", "{content.summary}" }
+                                        button {
+                                            class: "flow-toggle",
+                                            onclick: move |_| {
+                                                let mut e = expanded();
+                                                e[i] = false;
+                                                expanded.set(e);
+                                            },
+                                            "Show less"
+                                        }
+                                    } else {
+                                        p {
+                                            class: "flow-node-text",
+                                            "{content.summary.chars().take(READ_MORE_THRESHOLD).collect::<String>()}…"
+                                        }
+                                        button {
+                                            class: "flow-toggle",
+                                            onclick: move |_| {
+                                                let mut e = expanded();
+                                                e[i] = true;
+                                                expanded.set(e);
+                                            },
+                                            "Read more"
+                                        }
+                                    }
                                 },
-                                "Show less"
+                                None => rsx! {
+                                    p { class: "flow-node-text", "{content.summary}" }
+                                },
                             }
-                        } else {
-                            p { class: "flow-node-text", "{step}" }
                         }
                     }
 
