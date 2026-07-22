@@ -1,6 +1,7 @@
 use dioxus::prelude::*;
 mod map;
 mod regions;
+mod flowchart;
 use map::JapanMap;
 mod hokkaido;
 use hokkaido::Hokkaido;
@@ -88,17 +89,30 @@ fn App() -> Element {
 pub fn Hero() -> Element {
     rsx! {
         div { id: "hero",
-            h1 { "🌍 GeoConnect" }
+            span { class: "hero-emoji", "🌍" }
+            h1 { "GeoConnect" }
+            p { class: "hero-tagline", "Understand Japan before you go" }
 
             div { id: "links",
-                a { "📚 Learn the WHY in Japanese culture" }
-                a { "👺 Explore different Region's Distinct Culture" }
-                a { "👹 Prepare for Life in Japan" }
-                a { "🎌 Minimize Culture Shock" }
-
-                Link { to: Route::Map { id: 1 }, "Go to the Map" }
-            
+                div { class: "info-item",
+                    span { class: "info-icon", "📚" }
+                    span { "Learn the WHY in Japanese culture" }
+                }
+                div { class: "info-item",
+                    span { class: "info-icon", "👺" }
+                    span { "Explore different Region's Distinct Culture" }
+                }
+                div { class: "info-item",
+                    span { class: "info-icon", "👹" }
+                    span { "Prepare for Life in Japan" }
+                }
+                div { class: "info-item",
+                    span { class: "info-icon", "🎌" }
+                    span { "Minimize Culture Shock" }
+                }
             }
+
+            Link { class: "cta-button", to: Route::Map { id: 1 }, "Go to the Map" }
         }
     }
 }

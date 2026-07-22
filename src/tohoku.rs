@@ -1,4 +1,5 @@
 use dioxus::prelude::*;
+use crate::flowchart::FlowChart;
 
 #[derive(Debug, Clone, sqlx::FromRow)]
 struct Fact {
@@ -23,11 +24,13 @@ pub fn Tohoku() -> Element {
 
     rsx! {
         div {
+            class: "region-page",
             h1 { "Tohoku " }
 
             if let Some(facts) = facts() {
                 for fact in facts {
                     button {
+                        class: "fact-btn",
                         onclick: {
                             let fact = fact.clone();
                             move |_| selected.set(Some(fact.clone()))
@@ -39,10 +42,9 @@ pub fn Tohoku() -> Element {
 
             if let Some(fact) = selected() {
                 div {
+                    class: "fact-detail",
                     h2 { "{fact.title}" }
-                    for step in fact.body.split(" | ") {
-                        div { "{step}" }
-                    }
+                    FlowChart { steps: fact.body.split(" | ").map(|s| s.to_string()).collect::<Vec<String>>() }
                 }
             }
         }
