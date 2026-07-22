@@ -131,16 +131,15 @@ body {
 
 .map-image-wrapper {
     position: relative;
-    width: 700px;
-    max-width: 90vw;
-    margin: 0 auto;
 }
 
 .japan-map-img {
-    display: block;
-    width: 100%;
-    height: auto;
-    margin: 0;
+    position: relative;
+    z-index: 1;
+
+    transition:
+        filter 0.22s ease,
+        transform 0.22s ease;
 }
 
 
@@ -149,87 +148,136 @@ a.map-hotspot {
     z-index: 100 !important;
 
     display: block !important;
-    box-sizing: border-box !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
 
     background: transparent !important;
     border: none !important;
 
     color: transparent !important;
     font-size: 0 !important;
-    line-height: 0 !important;
     text-decoration: none !important;
 
     cursor: pointer !important;
 }
 
-
-.map-image-wrapper {
-    position: relative;
-}
-
-.japan-map-img {
-    position: relative;
-    z-index: 1;
-
-    transition:
-        filter 0.24s ease,
-        transform 0.24s ease;
-}
-
-
-.map-image-wrapper:has(a.map-hotspot:hover) .japan-map-img {
-    filter:
-        brightness(1.1)
-        contrast(1.06)
-        saturate(1.18)
-        drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))
-        drop-shadow(0 0 8px rgba(255, 90, 130, 0.28))
-        drop-shadow(0 0 14px rgba(90, 140, 255, 0.18));
-
-    transform:
-        translateY(-2px)
-        scale(1.007);
-}
-
-
-
-.map-image-wrapper:has(a.map-hotspot:active) .japan-map-img {
-    filter:
-        brightness(1.05)
-        contrast(1.04)
-        saturate(1.1)
-        drop-shadow(0 4px 9px rgba(0, 0, 0, 0.34))
-        drop-shadow(0 0 6px rgba(255, 100, 140, 0.18));
-
-    transform:
-        translateY(0)
-        scale(0.998);
-}
-
-
-
 a.map-hotspot:focus-visible {
     outline: none !important;
 }
 
-.map-image-wrapper:has(a.map-hotspot:focus-visible) .japan-map-img {
-    filter:
-        brightness(1.1)
-        contrast(1.06)
-        saturate(1.18)
-        drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))
-        drop-shadow(0 0 8px rgba(255, 90, 130, 0.28))
-        drop-shadow(0 0 14px rgba(90, 140, 255, 0.18));
 
-    transform:
-        translateY(-2px)
-        scale(1.007);
+.map-image-wrapper:has(.hokkaido-hotspot:hover) .japan-map-img,
+.map-image-wrapper:has(.hokkaido-hotspot:focus-visible) .japan-map-img {
+    filter:
+        brightness(1.08)
+        contrast(1.05)
+        saturate(1.38)
+        drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))
+        drop-shadow(0 0 8px rgba(255, 70, 70, 0.58))
+        drop-shadow(0 0 16px rgba(255, 70, 70, 0.32));
+
+    transform: translateY(-2px) scale(1.007);
 }
 
-/* Hokkaido */
+
+.map-image-wrapper:has(.tohoku-hotspot:hover) .japan-map-img,
+.map-image-wrapper:has(.tohoku-hotspot:focus-visible) .japan-map-img {
+    filter:
+        brightness(1.08)
+        contrast(1.05)
+        saturate(1.38)
+        drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))
+        drop-shadow(0 0 8px rgba(255, 225, 70, 0.58))
+        drop-shadow(0 0 16px rgba(255, 225, 70, 0.32));
+
+    transform: translateY(-2px) scale(1.007);
+}
+
+
+.map-image-wrapper:has(.kanto-hotspot:hover) .japan-map-img,
+.map-image-wrapper:has(.kanto-hotspot:focus-visible) .japan-map-img {
+    filter:
+        brightness(1.08)
+        contrast(1.05)
+        saturate(1.38)
+        drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))
+        drop-shadow(0 0 8px rgba(6, 250, 71, 0.58))
+        drop-shadow(0 0 16px rgba(31, 235, 85, 0.32));
+
+    transform: translateY(-2px) scale(1.007);
+}
+
+.map-image-wrapper:has(.chubu-hotspot:hover) .japan-map-img,
+.map-image-wrapper:has(.chubu-hotspot:focus-visible) .japan-map-img {
+    filter:
+        brightness(1.08)
+        contrast(1.05)
+        saturate(1.38)
+        drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))
+        drop-shadow(0 0 8px rgba(60, 220, 235, 0.58))
+        drop-shadow(0 0 16px rgba(60, 220, 235, 0.32));
+
+    transform: translateY(-2px) scale(1.007);
+}
+
+
+.map-image-wrapper:has(.kansai-hotspot:hover) .japan-map-img,
+.map-image-wrapper:has(.kansai-hotspot:focus-visible) .japan-map-img {
+    filter:
+        brightness(1.08)
+        contrast(1.05)
+        saturate(1.38)
+        drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))
+        drop-shadow(0 0 8px rgba(165, 95, 255, 0.58))
+        drop-shadow(0 0 16px rgba(165, 95, 255, 0.32));
+
+    transform: translateY(-2px) scale(1.007);
+}
+
+.map-image-wrapper:has(.chugoku-hotspot:hover) .japan-map-img,
+.map-image-wrapper:has(.chugoku-hotspot:focus-visible) .japan-map-img {
+    filter:
+        brightness(1.08)
+        contrast(1.05)
+        saturate(1.38)
+        drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))
+        drop-shadow(0 0 8px rgba(255, 155, 55, 0.58))
+        drop-shadow(0 0 16px rgba(255, 155, 55, 0.32));
+
+    transform: translateY(-2px) scale(1.007);
+}
+
+
+.map-image-wrapper:has(.shikoku-hotspot:hover) .japan-map-img,
+.map-image-wrapper:has(.shikoku-hotspot:focus-visible) .japan-map-img {
+    filter:
+        brightness(1.08)
+        contrast(1.05)
+        saturate(1.38)
+        drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))
+        drop-shadow(0 0 8px rgba(255, 60, 210, 0.58))
+        drop-shadow(0 0 16px rgba(255, 60, 210, 0.32));
+
+    transform: translateY(-2px) scale(1.007);
+}
+
+.map-image-wrapper:has(.kyushu-hotspot:hover) .japan-map-img,
+.map-image-wrapper:has(.kyushu-hotspot:focus-visible) .japan-map-img {
+    filter:
+        brightness(1.08)
+        contrast(1.05)
+        saturate(1.38)
+        drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3))
+        drop-shadow(0 0 8px rgba(190, 190, 200, 0.58))
+        drop-shadow(0 0 16px rgba(190, 190, 200, 0.32));
+
+    transform: translateY(-2px) scale(1.007);
+}
+
+
+.map-image-wrapper:has(a.map-hotspot:active) .japan-map-img {
+    transform: translateY(0) scale(0.998);
+}
+
+
 a.map-hotspot.hokkaido-hotspot {
     top: 2% !important;
     left: 52% !important;
