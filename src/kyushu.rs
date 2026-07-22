@@ -1,5 +1,6 @@
 use dioxus::prelude::*;
 use crate::flowchart::FlowChart;
+use crate::place_nav::PlaceNav;
 
 #[derive(Debug, Clone, sqlx::FromRow)]
 struct Fact {
@@ -40,6 +41,8 @@ pub fn Kyushu() -> Element {
             class: "region-page",
             h1 { "Kyushu " }
 
+            PlaceNav { region_id: 8 }
+
             if let Some(facts) = facts() {
                 for fact in facts {
                     button {
@@ -57,7 +60,7 @@ pub fn Kyushu() -> Element {
                 div {
                     class: "fact-detail",
                     h2 { "{fact.title}" }
-                    FlowChart { steps: fact.body.split(" | ").map(|s| s.to_string()).collect::<Vec<String>>() }
+                    FlowChart { key: "{fact.title}", steps: fact.body.split(" | ").map(|s| s.to_string()).collect::<Vec<String>>() }
                 }
             }
 
@@ -80,6 +83,8 @@ pub fn Kyushu() -> Element {
                     class: "okinawa-section",
                     h2 { "Okinawa" }
 
+                    PlaceNav { region_id: 9 }
+
                     if let Some(facts) = okinawa_facts() {
                         for fact in facts {
                             button {
@@ -97,7 +102,7 @@ pub fn Kyushu() -> Element {
                         div {
                             class: "fact-detail",
                             h2 { "{fact.title}" }
-                            FlowChart { steps: fact.body.split(" | ").map(|s| s.to_string()).collect::<Vec<String>>() }
+                            FlowChart { key: "{fact.title}", steps: fact.body.split(" | ").map(|s| s.to_string()).collect::<Vec<String>>() }
                         }
                     }
                 }
